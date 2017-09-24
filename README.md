@@ -1,4 +1,4 @@
-# Java - university class home tasks
+# Java - university class home tasks [![Build Status](https://travis-ci.org/hrsrashid/java-class.svg?branch=master)](https://travis-ci.org/hrsrashid/java-class)
 
 home assignments  
 n14
