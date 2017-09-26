@@ -16,8 +16,9 @@ public class BtreeMapTest {
       assertNull(classUnderTest.put("a", 1));
       assertFalse(classUnderTest.isEmpty());
     }
-  
+
     @Test public void testInsertAndSearch() {
+      assertNull("chould return null for non-existing key", classUnderTest.get("none"));
       assertNull(classUnderTest.put("b", 2));
       assertNull(classUnderTest.put("d", 4));
       assertNull(classUnderTest.put("a", 1));
@@ -47,5 +48,6 @@ public class BtreeMapTest {
       assertEquals("should return value 4 of 'd'", Integer.valueOf(4), classUnderTest.remove("d"));
       assertEquals("should return value 3 of 'c'", Integer.valueOf(3), classUnderTest.remove("c"));
       assertTrue("should become empty", classUnderTest.isEmpty());
+      assertTrue("should have empty key set", classUnderTest.keySet().isEmpty());
     }
 }

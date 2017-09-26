@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<GridPane fx:controller="AppController"
+  xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
+  <padding>
+    <Insets top="15" right="15" bottom="10" left="15"/>
+  </padding>
+  <Label style="-fx-font: NORMAL 20 Tahoma;" text="Dictionary" GridPane.columnIndex="0" GridPane.rowIndex="0"></Label>
+  <TableView fx:id="dictionaryTable" GridPane.columnIndex="0" GridPane.rowIndex="1" prefWidth="500">
+    <columns>
+      <TableColumn text="English" fx:id="englishColumn"></TableColumn>
+      <TableColumn text="Russian" fx:id="russianColumn"></TableColumn>
+    </columns>
+  </TableView>
+  <VBox spacing="10" alignment="top_right" GridPane.columnIndex="1" GridPane.rowIndex="1">
+    <TextField fx:id="englishField" promptText="English" prefWidth="150" onAction="#addTranslation"/>
+    <TextField fx:id="russianField" promptText="Russian" prefWidth="150" onAction="#addTranslation"/>
+    <Button text="Save" onAction="#addTranslation"/>
+    <VBox spacing="10" alignment="top_right">
+      <padding>
+        <Insets top="50" right="0" bottom="50" left="0" />
+      </padding>
+      <TextField fx:id="searchField" promptText="Search by english word..." prefWidth="150" onAction="#searchTranslation" />
+      <Label fx:id="searchResultLabel" text="Search result."></Label>
+    </VBox>
+    <Button text="Delete selection" onAction="#deleteTranslation" />
+  </VBox>
+</GridPane>

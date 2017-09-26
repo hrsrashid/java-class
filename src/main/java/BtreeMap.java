@@ -94,8 +94,9 @@ public class BtreeMap<K,V> implements Map<K,V>, Iterable<Entry<K,V>> {
 
 	@Override
 	public V get(Object key) {
-		return findNode(key).result.getValue().getValue();
-	}
+    SearchResult searchResult = findNode(key);
+		return searchResult.result.isLeaf() ? null : searchResult.result.getValue().getValue();
+  }
 
 	@Override
 	public V put(K key, V value) {

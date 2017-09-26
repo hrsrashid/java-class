@@ -5,11 +5,11 @@ import java.util.stream.Collectors;
 
 public class Btree<V> implements Iterable<Node<V>> {
   private Node<V> root;
-  
+
   Btree() {
     root = new Leaf<V>();
   }
-  
+
   Btree(Node<V> root) {
     this.root = root;
   }
@@ -25,8 +25,11 @@ public class Btree<V> implements Iterable<Node<V>> {
   @Override
   public Iterator<Node<V>> iterator() {
     final Stack<Node<V>> stack = new Stack<Node<V>>();
-    stack.push(this.root);
-    
+
+    if (!root.isLeaf()) {
+      stack.push(root);
+    }
+
     return new Iterator<Node<V>>() {
 
       @Override

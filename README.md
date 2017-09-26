@@ -10,4 +10,4 @@ n14
 - [x] removing of elements,
 - [x] search by key,
 - [x] sequential access to all elements (iteration).
-- [ ] Write programm, using the class for Eng-Rus dictionary.
+- [x] Write programm, using the class for Eng-Rus dictionary.
