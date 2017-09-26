@@ -1,6 +1,7 @@
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.stream.Collectors;
 
 public class BinNode<V> implements Node<V> {
   private Node<V> left, right;
@@ -53,5 +54,29 @@ public class BinNode<V> implements Node<V> {
   @Override
   public boolean isLeaf() {
     return false;
+  }
+
+  @Override
+  public void removeChild(Node<V> node) {
+    replaceChild(node, new Leaf<V>());
+  }
+
+  @Override
+  public void replaceChild(Node<V> oldNode, Node<V> newNode) {
+    setChildren(getChildren()
+      .stream()
+      .map(n -> n == oldNode ? newNode : n)
+      .collect(Collectors.toList())
+    );
+  }
+
+  @Override
+  public boolean hasLeaf() {
+    return getChildren().stream().anyMatch(n -> n.isLeaf());
+  }
+
+  @Override
+  public boolean hasOnlyLeaves() {
+    return getChildren().stream().allMatch(n -> n.isLeaf());
   }
 }

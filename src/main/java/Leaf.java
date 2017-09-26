@@ -28,4 +28,20 @@ public class Leaf<V> implements Node<V> {
   public boolean isLeaf() {
     return true;
   }
+
+  @Override
+  public void removeChild(Node<V> node) {}
+
+  @Override
+  public void replaceChild(Node<V> oldNode, Node<V> newNode) {}
+
+  @Override
+  public boolean hasLeaf() {
+    return false;
+  }
+
+  @Override
+  public boolean hasOnlyLeaves() {
+    return false;
+  }
 }

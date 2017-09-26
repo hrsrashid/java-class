@@ -49,20 +49,35 @@ public class BtreeMap<K,V> implements Map<K,V>, Iterable<Entry<K,V>> {
 	}
 
 	private SearchResult findNode(Object key) {
-		Node<Entry<K,V>> parent = null, current = tree.getRoot();
+		Node<Entry<K,V>> parent = new Leaf<Entry<K,V>>(), current = tree.getRoot();
 
 		while (!current.isLeaf()) {
-			parent = current;
 			K current_key = current.getValue().getKey();
 
 			if (current_key.equals(key)) {
 				return new SearchResult(current, parent);
 			}
 
+			parent = current;
 			current = Iterables.get(current.getChildren(), chooseChildNode(current_key, key));
 		}
 
 		return new SearchResult(new Leaf<Entry<K,V>>(), parent);
+	}
+
+	private SearchResult findMinimalNode(Node<Entry<K,V>> startingNode) {
+		Node<Entry<K,V>> current = startingNode,
+								 minimalNode = new Leaf<Entry<K,V>>(),
+											parent = new Leaf<Entry<K,V>>();
+
+		do {
+			parent = minimalNode;
+			minimalNode = current;
+			current = Iterables.get(current.getChildren(), 0);
+		}
+		while (!current.isLeaf());
+
+		return new SearchResult(minimalNode, parent);
 	}
 
 	private class SearchResult {
@@ -90,10 +105,10 @@ public class BtreeMap<K,V> implements Map<K,V>, Iterable<Entry<K,V>> {
 		}
 
 		SearchResult searchResult = findNode(key);
-		
+
 		if (searchResult.result.isLeaf()) {
 			ArrayList<Node<Entry<K,V>>> children = new ArrayList<Node<Entry<K,V>>>(searchResult.parent.getChildren());
-			children.set(chooseChildNode(searchResult.parent.getValue().getKey(), key), createNode(key, value));	
+			children.set(chooseChildNode(searchResult.parent.getValue().getKey(), key), createNode(key, value));
 			searchResult.parent.setChildren(children);
 		} else {
 			V old_value = searchResult.result.getValue().getValue();
@@ -110,7 +125,41 @@ public class BtreeMap<K,V> implements Map<K,V>, Iterable<Entry<K,V>> {
 
 	@Override
 	public V remove(Object key) {
-		return null;
+		SearchResult deletingNode = findNode(key);
+
+		if (deletingNode.result.isLeaf()) {
+			return null;
+		}
+
+		V returnValue = deletingNode.result.getValue().getValue();
+
+		if (!deletingNode.result.hasLeaf()) {
+			SearchResult minimalNodeSearchResult = findMinimalNode(Iterables.get(deletingNode.result.getChildren(), 1));
+			deletingNode.result.setValue(minimalNodeSearchResult.result.getValue());
+			deletingNode = minimalNodeSearchResult;
+		}
+
+		if (deletingNode.result.hasOnlyLeaves()) {
+
+			if (deletingNode.parent.isLeaf()) {
+				clear();
+			} else {
+				deletingNode.parent.removeChild(deletingNode.result);
+			}
+
+			return returnValue;
+		}
+
+		ArrayList<Node<Entry<K,V>>> children = new ArrayList<Node<Entry<K,V>>>(deletingNode.result.getChildren());
+		int childNumber = children.get(0).isLeaf() ? 1 : 0;
+
+		if (deletingNode.parent.isLeaf()) {
+			tree.setRoot(children.get(childNumber));
+		} else {
+			deletingNode.parent.replaceChild(deletingNode.result, children.get(childNumber));
+		}
+
+		return returnValue;
 	}
 
 	@Override
