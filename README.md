@@ -21,6 +21,6 @@ n14
 - [x] Определить функцию переназначения версии ОС.
 
 
-## Fird task _(not in workbook)_:
+## Fird task:
 
-???
+Create interface `Pair` defining arithmetic operations, classes `FuzzyNumber` and `Complex` implementing `Pair` interface.
