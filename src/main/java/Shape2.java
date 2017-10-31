@@ -1,3 +1,4 @@
+import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.Scanner;
 
@@ -117,14 +118,27 @@ class Triangle2 extends Shape2 {
 class Rectangle2 extends Shape2 {
 
   protected double a, b;
+  protected int x1, x2, y1, y2;
 
   Rectangle2() {
     a = b = 0;
+    x1 = x2 = y1 = y2 = 0;
+  }
+
+  Rectangle2(int x1, int y1, int x2, int y2) {
+    this.x1 = x1;
+    this.x2 = x2;
+    this.y1 = y1;
+    this.y2 = y2;
   }
 
   Rectangle2(double a, double b) {
     this.a = a;
     this.b = b;
+  }
+
+  public void paint(Graphics g) {
+    g.drawRect(x1, y1, Math.abs(x2 - x1), Math.abs(y2 - y1));
   }
 
 	@Override
