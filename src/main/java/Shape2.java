@@ -138,7 +138,7 @@ class Rectangle2 extends Shape2 {
   }
 
   public void paint(Graphics g) {
-    g.drawRect(x1, y1, Math.abs(x2 - x1), Math.abs(y2 - y1));
+    g.fillRect(x1, y1, Math.abs(x2 - x1), Math.abs(y2 - y1));
   }
 
 	@Override
