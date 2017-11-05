@@ -26,7 +26,7 @@ n14
 Create interface `Pair` defining arithmetic operations, classes `FuzzyNumber` and `Complex` implementing `Pair` interface.
 
 
-## TODO: Fourth task:
+## Fourth task:
 
 Rectangular area defined by x1, y1, x2, y2 and partitioned into rectangles (NxM).
 There is octagon in the area. Find amount of rectangles which intersect with octagon, mark such rectangles.

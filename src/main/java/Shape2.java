@@ -1,6 +1,7 @@
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.Scanner;
+import java.util.function.BiFunction;
 
 abstract class Shape2 {
   public abstract double square();
@@ -139,6 +140,18 @@ class Rectangle2 extends Shape2 {
 
   public void paint(Graphics g) {
     g.fillRect(x1, y1, Math.abs(x2 - x1), Math.abs(y2 - y1));
+  }
+
+  public boolean forSomePoint(BiFunction<Integer, Integer, Boolean> predicate) {
+    for (int y = y1; y <= y2; y++) {
+      for (int x = x1; x <= x2; x++) {
+        if (predicate.apply(x, y)) {
+          return true;
+        }
+      }
+    }
+
+    return false;
   }
 
 	@Override

@@ -7,6 +7,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Optional;
 import java.util.Queue;
 
@@ -31,6 +32,11 @@ class Line {
 
   Line(int x1, int y1, int x2, int y2) {
     setPoints(x1, y1, x2, y2);
+  }
+
+  Line(Point p1, Point p2) {
+    this.p1 = p1;
+    this.p2 = p2;
   }
 
   public void setPoints(int x1, int y1, int x2, int y2) {
@@ -95,6 +101,15 @@ class Line {
     ) / denominator;
 
     return Optional.of(new Point(x, y));
+  }
+
+  /**
+   * <p> + for point left of the line</p>
+   * <p> 0 for point on the line</p>
+   * <p> - for point right of the line</p>
+   */
+  public int getSide(Point p3) {
+    return ((p2.x - p1.x) * (p3.y - p1.y) - (p3.x - p1.x) * (p2.y - p1.y));
   }
 }
 
@@ -167,6 +182,42 @@ class Octagon {
       .filter(p -> Vector.distance(p.x, p.y, x, y) <= 8)
       .findFirst();
   }
+
+  public List<Rectangle2> intersectingRects(List<Rectangle2> rects) {
+    List<Rectangle2> result = new LinkedList<Rectangle2>();
+
+    for (Rectangle2 rect : rects) {
+      if (rect.forSomePoint((x, y) -> includesPoint(x, y))) {
+        result.add(rect);
+      }
+    }
+
+    return result;
+  }
+
+  public boolean includesPoint(int x, int y) {
+    int wn = 0;
+    int n = points.size();
+    Point p = new Point(x, y);
+
+    for (int i = 0; i < n; i++) {
+      if (points.get(i).y <= y) {
+        if (points.get((i + 1) % n).y > y) {
+          if (new Line(points.get(i), points.get((i + 1) % n)).getSide(p) > 0) {
+            ++wn;
+          }
+        }
+      } else {
+        if (points.get((i + 1) % n).y <= y) {
+          if (new Line(points.get(i), points.get((i + 1) % n)).getSide(p) < 0) {
+            --wn;
+          }
+        }
+      }
+    }
+
+    return wn != 0;
+  }
 }
 
 
@@ -193,12 +244,18 @@ class OctagonPanel extends JPanel implements MouseMotionListener, MouseListener 
 
   @Override
   public void paintComponent(Graphics g) {
-    for (int i = 0; i < rectangles.size(); i++) {
-      g.setColor(Color.getHSBColor((float)i/10, .5f, .5f));
-      rectangles.get(i).paint(g);
+    List<Rectangle2> rects = octagon.intersectingRects(rectangles);
+    int n = rects.size();
+    float step = 1.f/(n + 1);
+    int i = 0;
+    for (Rectangle2 rect : rects) {
+      g.setColor(Color.getHSBColor(i*step, .5f, .5f));
+      rect.paint(g);
+      i++;
     }
 
     g.setColor(Color.black);
+    g.drawString(String.format("Intersected rectangles: %d", n), x_0, y_0 - 3);
     g.drawRect(x_0, y_0, x_n - x_0, y_n - y_0);
     lines.forEach(r -> r.paint(g));
     g.setColor(Color.blue);
