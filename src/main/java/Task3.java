@@ -14,6 +14,10 @@ class Complex implements Pair<Complex> {
     set(re, im);
   }
 
+  Complex(double re) {
+    set(re, 0);
+  }
+
   /**
    * @return the re
    */
@@ -60,7 +64,7 @@ class Complex implements Pair<Complex> {
 
   @Override
   public String toString() {
-    return String.format("(%5.2f + %5.2fi)", re, im);
+    return String.format("(%5.2f %+5.2fi)", re, im);
   }
 
   private Complex getConjugated() {
