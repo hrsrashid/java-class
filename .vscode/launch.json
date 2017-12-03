@@ -1,0 +1,158 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Debug (Launch)-App<java-class>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "console": "internalConsole",
+      "stopOnEntry": false,
+      "mainClass": "App",
+      "projectName": "java-class",
+      "args": ""
+    },
+    {
+      "type": "java",
+      "name": "Debug (Launch)-ArmamentBookApp<java-class>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "console": "internalConsole",
+      "stopOnEntry": false,
+      "mainClass": "ArmamentBookApp",
+      "projectName": "java-class",
+      "args": ""
+    },
+    {
+      "type": "java",
+      "name": "Debug (Launch)-EmployeeApp<java-class>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "console": "internalConsole",
+      "stopOnEntry": false,
+      "mainClass": "EmployeeApp",
+      "projectName": "java-class",
+      "args": ""
+    },
+    {
+      "type": "java",
+      "name": "Debug (Launch)-PhoneApp<java-class>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "console": "internalConsole",
+      "stopOnEntry": false,
+      "mainClass": "PhoneApp",
+      "projectName": "java-class",
+      "args": ""
+    },
+    {
+      "type": "java",
+      "name": "Debug (Launch)-ShapeApp<java-class>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "console": "internalConsole",
+      "stopOnEntry": false,
+      "mainClass": "ShapeApp",
+      "projectName": "java-class",
+      "args": ""
+    },
+    {
+      "type": "java",
+      "name": "Debug (Launch)-ShapeApp2<java-class>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "console": "internalConsole",
+      "stopOnEntry": false,
+      "mainClass": "ShapeApp2",
+      "projectName": "java-class",
+      "args": ""
+    },
+    {
+      "type": "java",
+      "name": "Debug (Launch)-Task3<java-class>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "console": "internalConsole",
+      "stopOnEntry": false,
+      "mainClass": "Task3",
+      "projectName": "java-class",
+      "args": ""
+    },
+    {
+      "type": "java",
+      "name": "Debug (Launch)-Task4<java-class>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "console": "internalConsole",
+      "stopOnEntry": false,
+      "mainClass": "Task4",
+      "projectName": "java-class",
+      "args": ""
+    },
+    {
+      "type": "java",
+      "name": "Debug (Launch)-Task5<java-class>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "console": "internalConsole",
+      "stopOnEntry": false,
+      "mainClass": "Task5",
+      "projectName": "java-class",
+      "args": ""
+    },
+    {
+      "type": "java",
+      "name": "Debug (Launch)-ThreadsApp<java-class>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "console": "internalConsole",
+      "stopOnEntry": false,
+      "mainClass": "ThreadsApp",
+      "projectName": "java-class",
+      "args": ""
+    },
+    {
+      "type": "java",
+      "name": "Debug (Launch)-TransportApp<java-class>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "console": "internalConsole",
+      "stopOnEntry": false,
+      "mainClass": "TransportApp",
+      "projectName": "java-class",
+      "args": ""
+    },
+    {
+      "type": "java",
+      "name": "Debug (Launch)-GuiApp<java-class>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "console": "internalConsole",
+      "stopOnEntry": false,
+      "mainClass": "GuiApp",
+      "projectName": "java-class",
+      "args": ""
+    },
+    {
+      "type": "java",
+      "name": "Debug (Launch)-GuiApp2<java-class>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "console": "internalConsole",
+      "stopOnEntry": false,
+      "mainClass": "GuiApp2",
+      "projectName": "java-class",
+      "args": ""
+    },
+    {
+      "type": "java",
+      "name": "Debug (Attach)",
+      "request": "attach",
+      "hostName": "localhost",
+      "port": 0
+    }
+  ]
+}
